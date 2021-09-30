@@ -21,6 +21,8 @@ class CreateMetaTagsTable extends Migration
             $table->string('keywords')->nullable();;
             $table->string('robots')->nullable();
             $table->morphs('meta_taggable');
+            $table->foreignId('meta_taggable_id')->constrained()->cascadeOnDelete();
+            $table->unique(['meta_taggable_id', 'meta_taggable_type']);
             $table->timestamps();
         });
     }
